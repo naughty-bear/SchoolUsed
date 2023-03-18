@@ -1,0 +1,4 @@
+function select(idArr,id){
+  return idArr.indexOf(id) !== -1
+}
+module.exports.select = select

@@ -1,0 +1,119 @@
+/* pages/publish/index.wxss */
+.publish-container {
+  margin-bottom: 200rpx;
+}
+.publish {
+  margin: 20rpx;
+}
+.textStyle {
+  color: #4fc08d;
+}
+
+.publish-ipt {
+  width: 100%;
+  height: 70rpx;
+  border: 2rpx solid #ccc;
+  padding-left: 10rpx;
+  margin-right: 10rpx;
+  box-sizing: border-box;
+  line-height: 70rpx;
+}
+
+.publish-btn {
+  width: 400rpx;
+  height: 80rpx;
+  text-align: center;
+  line-height: 80rpx;
+  border-radius: 10rpx;
+  background-color: #4fc08d;
+  margin-top: 20rpx;
+  color: #fff;
+}
+/* 更新发布商品信息 */
+.compile {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+.publish-updata,
+.publish-no {
+   background-color: red;
+   width: 300rpx;
+   height: 80rpx;
+   line-height: 80rpx;
+}
+/* 上传图片 */
+.content-img{
+  width: 30px;
+  height: 30px;
+  margin-top: 6px;
+  vertical-align: middle;     
+  }
+  .content--text{
+    color: gray;
+    vertical-align: middle;
+  }
+  .onload {
+    margin-top: 10px;
+    float: left;
+    position: relative;
+    margin-right: 25px;
+    margin-bottom: 25px;
+    width: 60px;
+    height: 60px;
+    border: 1px dashed #96DC74;
+    box-sizing: border-box;
+  }
+  
+  .onload::before {
+    content: " ";
+    position: absolute;
+    width: 2px;
+    height: 35px;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    background-color: #96DC74;
+  }
+  
+  .onload::after {
+    content: " ";
+    position: absolute;
+    height: 2px;
+    width: 35px;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    background-color: #96DC74;
+  }
+  
+  .ui_image {
+    margin-top: 10px;
+    float: left;
+    position: relative;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    width: 60px;
+    height: 60px;
+    box-sizing: border-box;
+  }
+  
+  .ui_uploader_item_icon {
+    position: absolute;
+    right: 10rpx;
+    top: 0;
+    background: #fff;
+    z-index: 999;
+  }
+  
+  .ui_uploader_item {
+    float: left;
+    position: relative;
+    margin-bottom: 30rpx;
+    width: 165rpx;
+    height: 165rpx;
+  }
+  
+  

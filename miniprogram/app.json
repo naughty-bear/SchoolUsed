@@ -1,0 +1,63 @@
+{
+  "pages": [
+    "pages/home/index",
+    "pages/type/index",
+    "pages/publish/index",
+    "pages/cart/index",
+    "pages/me/index",
+    "pages/recyle/index",
+    "pages/login/index",
+    "pages/enroll/index",
+    "pages/approve/index",
+    "pages/mypublish/index",
+    "pages/detailgoods/index",
+    "pages/search/index",
+    "pages/indent/index"
+  ],
+  "window": {
+    "backgroundColor": "#F6F6F6",
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#4fc08d",
+    "navigationBarTitleText": "校园闲置",
+    "navigationBarTextStyle": "white"
+  },
+  "sitemapLocation": "sitemap.json",
+  "lazyCodeLoading": "requiredComponents",
+  "usingComponents": {},
+  "tabBar": {
+    "color": "#000000",
+    "selectedColor": "#1afa29",
+    "list": [
+      {
+        "pagePath": "pages/home/index",
+        "text": "首页",
+        "iconPath": "./images/shouye.png",
+        "selectedIconPath": "./images/shouye-y.png"
+      },
+      {
+        "pagePath": "pages/type/index",
+        "text": "分类",
+        "iconPath": "./images/fenlei.png",
+        "selectedIconPath": "./images/fenlei-y.png"
+      },
+      {
+        "pagePath": "pages/publish/index",
+        "text": "发布",
+        "iconPath": "./images/fabu.png",
+        "selectedIconPath": "./images/fabu-y.png"
+      },
+      {
+        "pagePath": "pages/cart/index",
+        "text": "购物车",
+        "iconPath": "./images/gouwuche.png",
+        "selectedIconPath": "./images/gouwuche-y.png"
+      },
+      {
+        "pagePath": "pages/me/index",
+        "text": "我的",
+        "iconPath": "./images/wode.png",
+        "selectedIconPath": "./images/wode-y.png"
+      }
+    ]
+  }
+}

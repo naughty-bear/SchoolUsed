@@ -1,0 +1,34 @@
+/* pages/enroll/index.wxss */
+.nape-container {
+  margin: 200rpx 50rpx;
+  border: 1rpx solid #ccc;
+  border-radius: 20rpx;
+  padding: 60rpx 0;
+}
+.nape {
+  display: flex;
+  flex-direction: row;
+  justify-content:center;
+  align-items: center;
+  margin-bottom: 40rpx;
+}
+.nape-ipt {
+  border-bottom: 1px solid #ccc;
+}
+.nape-btn1 {
+  width: 300rpx;
+  height: 80rpx;
+  background-color: #4fc08d;
+  line-height: 80rpx;
+  color: #fff;
+  margin-top: 60rpx;
+  margin-bottom: 20rpx;
+}
+.nape-btn2 {
+  width: 300rpx;
+  height: 80rpx;
+  background-color: red;
+  line-height: 80rpx;
+  color: #fff;
+  margin-top: 20rpx;
+}

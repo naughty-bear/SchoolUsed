@@ -1,0 +1,44 @@
+/* pages/mypublish/index.wxss */
+.scroll-containier {
+  display: flex;
+  flex-direction: row;
+  margin: 20rpx 20rpx 0 20rpx ;
+  background-color: #fff;
+}
+.goods {
+  color: rgb(224, 222, 222);
+  text-align: center;
+  margin-top: 50rpx;
+}
+.goods-name {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+}
+.goods-img {
+  width: 160rpx;
+  height: 160rpx;
+  margin: 10rpx;
+}
+.goods-message {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  margin-left: 20rpx;
+}
+.btn {
+  display: flex;
+  flex-direction: row;
+}
+.delete-goods {
+   margin: 0;
+   padding: 0;
+   height: 50rpx;
+   width: 100rpx;
+   line-height: 50rpx;
+   font-size: 28rpx;
+   color: red;
+   border: 1px solid red;
+   margin:100rpx 20rpx 0 0 ;
+}

@@ -1,0 +1,23 @@
+<!--pages/detailgoods/index.wxml-->
+<view>
+  <!-- 详情图 -->
+  <swiper class="swiper-item" indicator-dots indicator-color="#fff" indicator-active-color="#ccc">
+    <swiper-item wx:for="{{goods.avatarUrl}}" wx:key="index">
+      <image src="{{item}}" mode="" class="swiper-img" />
+    </swiper-item>
+  </swiper>
+  <!-- 商品详细 -->
+  <view class="detail-msg">
+    <text class="detail-price">¥{{goods.price}}</text>
+    <view class="detail-text">
+      <text>详情描述:</text>
+      <text style="margin: 20rpx 40rpx;">{{goods.content}}</text>
+    </view>
+
+    <view class="detail-container" wx:for="{{goods.avatarUrl}}" wx:key="index">
+      <image src="{{item}}"/>
+    </view>
+  </view>
+  <view style="height: 50rpx;"></view>
+  
+</view>

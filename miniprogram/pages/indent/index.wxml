@@ -1,0 +1,34 @@
+<!--pages/indent/index.wxml-->
+<view class="indent-container">
+  <text bindtap="indentAll" style="color: {{activeColor1}};font-size: {{size1}}rpx;">待收货</text>
+  <text bindtap="indentObligation" style="color: {{activeColor2}}; font-size: {{size2}}rpx;">已完成</text>
+</view>
+<!-- 没有订单时 -->
+<view class="indent-text" wx:if="{{indentGoodsYes.length == 0 && indentGoodsNo.length == 0}}">————您暂时没有订单————</view>
+<view class="indent-text" wx:if="{{indentGoodsNo.length == 0 && activeColor1 === '#04f436'}}">————您暂时没有待收货————</view>
+<view class="indent-text" wx:if="{{indentGoodsYes.length == 0 && activeColor2 === '#04f436'}}">————您暂时没有已完成订单————</view>
+
+<!-- 有订单 -->
+<view class="goods" wx:for="{{activeColor1=== '#04f436'?indentGoodsNo : indentGoodsYes}}" wx:key="index">
+  <view class="goods-msg">
+    <image src="{{item.avatarUrl}}" mode="" class="goods-img" />
+    <view class="goods-text">
+      <text>{{item.name}}</text>
+      <text class="text">{{item.goods}}</text>
+    </view>
+    <text style="color: red;margin: 20rpx 20rpx 130rpx 0;">¥{{item.price}}</text>
+  </view>
+  <view class="goods-footer">
+    <view class="phone-address">
+      <text style="margin-left: 20rpx;font-size: 30rpx;">地址:{{item.address}}</text>
+      <text class="footer-price">实付款:¥{{item.price}}</text>
+    </view>
+    <text style="margin-left: 20rpx;font-size: 30rpx;">电话:{{item.phone}}</text>
+  </view>
+  <view class="footer">
+    <text class="footer-text" wx:if="{{activeColor1 === '#04f436'}}">待取货</text>
+    <text class="footer-text" wx:else>已完成</text>
+    <text class="confirm" bindtap="confirmReceipt" data-id="{{item._id}}">{{activeColor1=== '#04f436'?'确认收货' : '删除订单'}}</text>
+  </view>
+</view>
+<view style="height: 100rpx;"></view>

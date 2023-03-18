@@ -1,0 +1,80 @@
+<!--pages/me/index.wxml-->
+<!-- 登录信息 -->
+<view class="userMessage">
+  <image wx:if="{{img}}"src="{{img}}" mode="" class="userHead" />
+  <view class="userName" wx:if="{{userName}}">
+    {{userName}}
+    <view class="logOut" bindtap="laginOut">
+      退出登录
+    </view>
+  </view>
+  <view wx:else style="color: #fff;font-size: 36rpx;" bindtap="login">
+    点击登录
+  </view>
+</view>
+<!-- 下部菜单栏 -->
+<view class="recycle-container">
+  <!-- 登录时显示 -->
+  <view wx:if="{{userName}}">
+    <view class="recycle" bindtap="changeTnformation">
+      <view class="nav-btn">
+        <image src="../../images/xiugaiziliao.png" mode="" class="Image" />
+        修改资料
+      </view>
+      <view class="toRight"></view>
+    </view>
+    <view class="recycle" bindtap="myOrder">
+      <view class="nav-btn">
+        <image src="../../images/dingdan.png" mode="" class="Image" />
+        我的订单
+      </view>
+      <view class="toRight"></view>
+    </view>
+    <view class="recycle" bindtap="publish">
+      <view class="nav-btn">
+        <image src="../../images/wodefabu.png" mode="" class="Image" />
+        我的发布
+      </view>
+      <view class="toRight"></view>
+    </view>
+    <view class="recycle" bindtap="toRecycle">
+      <view class="nav-btn">
+        <image src="../../images/huishou.png" mode="" class="Image" />
+        上门回收
+      </view>
+      <view class="toRight"></view>
+    </view>
+    <view class="recycle">
+      <view class="nav-btn">
+        <image src="../../images/意见建议.png" mode="" class="Image" />
+        <button open-type="feedback">反馈建议</button>
+      </view>
+      <view class="toRight"></view>
+    </view>
+    <view class="recycle" bindtap="call">
+      <view class="nav-btn">
+        <image src="../../images/kefu.png" mode="" class="Image" />
+        客服电话
+      </view>
+      <view class="toRight"></view>
+    </view>
+  </view>
+
+  <!-- 未登录时显示 -->
+  <view wx:else>
+    <view class="recycle">
+      <view class="nav-btn">
+        <image src="../../images/意见建议.png" mode="" class="Image" />
+        <button open-type="feedback">反馈建议</button>
+      </view>
+      <view class="toRight"></view>
+    </view>
+    <view class="recycle" bindtap="call">
+      <view class="nav-btn">
+        <image src="../../images/kefu.png" mode="" class="Image" />
+        客服电话
+      </view>
+      <view class="toRight"></view>
+    </view>
+  </view>
+</view>

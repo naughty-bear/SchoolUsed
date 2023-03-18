@@ -1,0 +1,31 @@
+/* pages/login/index.wxss */
+.login-avatarUrl {
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
+   margin-bottom: 40rpx;
+}
+.img-avatarUrl {
+  width: 260rpx;
+  height: 260rpx;
+  border-radius: 50%;
+  margin:80rpx 0 40rpx;
+}
+.accountNumber {
+  display: flex;
+  flex-direction: row;
+  padding: 20rpx;
+  background-color: #fff;
+  border-bottom: 2rpx solid #ccc;
+}
+
+.login-btn {
+  width: 300rpx;
+  height: 80rpx;
+  background-color: #4fc08d;
+  line-height: 80rpx;
+  color: #fff;
+  margin-top: 60rpx;
+  margin-bottom: 20rpx;
+}

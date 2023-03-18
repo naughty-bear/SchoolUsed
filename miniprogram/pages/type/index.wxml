@@ -1,0 +1,49 @@
+<!--pages/type/index.wxml-->
+<!-- 左侧导航栏 -->
+<view class="type-container">
+  <view class="nav-aside">
+    <block wx:for="{{typeList}}" wx:key="index">
+      <view class="nav-item" style="background-color: {{currentType==index? '#fff':''}};" bindtap="getGoodsMessage" data-id="{{item._id}}" data-index="{{index}}">{{item.typeName}}</view>
+    </block>
+  </view>
+  <!-- 右侧商品列表 -->
+  <scroll-view scroll-y="true" class="type-scroll">
+    <view wx:if="{{!goodslist.length}}" class="goodslist">
+      ————暂无该类商品————
+    </view>
+    <block wx:for="{{goodslist}}" wx:key="index">
+      <view class="scroll-containier" bindtap="todetail" data-id="{{item._id}}">
+        <!-- 商品图片 -->
+        <image src="{{item.avatarUrl[0]}}" mode="" class="type-img" />
+        <!-- 商品信息 -->
+        <view class="goods-message">
+          <view>{{item.name}}</view>
+          <view class="number-capacity"> 数量:{{item.num}}</view>
+          <view class="btn">
+            <view class="price">¥{{item.price}}</view>
+            <!-- 添加商品 -->
+            <view class="add-btn" catchtap="addGoods" data-id="{{item._id}}">
+              <!-- 导入函数模块 -->
+              <wxs module="tool" src="../../select.wxs"></wxs>
+              <image src="../../images/对勾.png" mode="" class="add-success" wx:if="{{tool.select(checkedList,item._id)}}" />
+              加入购物车
+            </view>
+          </view>
+        </view>
+      </view>
+    </block>
+    <view style="height: 100rpx;"></view>
+    <!-- 商品价格总计 -->
+    <view>
+      <view class="goods-total">
+        <view class="car-price">
+          <image src="../../images/购物车满.png" alt="" class="goods-car" />
+          总计:<text class="total-price">¥{{totalPrice}}</text>
+        </view>
+        <view class="shop-end" wx:if="{{totalPrice}}" bindtap="shopEnd">选好了</view>
+      </view>
+    </view>
+  </scroll-view>
+
+
+</view>

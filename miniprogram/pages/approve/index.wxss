@@ -1,0 +1,28 @@
+/* pages/approve/index.wxss */
+.message-container {
+  margin-top: 20rpx;
+}
+.message-name,
+.message-head{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items:center;
+  border-bottom: 1px solid #ccc;
+  padding: 20rpx 40rpx;
+}
+.name-ipt {
+  text-align: right;
+}
+.message-img {
+  width: 100rpx;
+  height: 100rpx;
+}
+.submit-approve {
+  width: 350rpx;
+  height: 80rpx;
+  line-height: 80rpx;
+  background-color: #4fc08d;
+  color: #fff;
+  margin-top: 100rpx;
+}

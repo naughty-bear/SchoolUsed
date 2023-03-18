@@ -1,0 +1,65 @@
+/* pages/search/index.wxss */
+pages {
+  width: 100%;
+}
+.scroll-containier {
+  display: flex;
+  flex-direction: row;
+  background-color: #fff;
+  margin-bottom: 10rpx;
+  width: 100%;
+}
+
+/* .type-scroll {
+  margin-left: 200rpx;
+} */
+
+.goodslist {
+  color: #ccc;
+  text-align: center;
+  margin-top: 50rpx;
+}
+
+.type-img {
+  width: 160rpx;
+  height: 160rpx;
+  margin: 10rpx;
+}
+
+.goods-message {
+  padding: 5rpx 15rpx 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.number-capacity {
+  margin: 20rpx 0;
+  color: #ccc;
+  font-size: 28rpx;
+}
+.price {
+  color: red;
+  margin-bottom: 15rpx;
+}
+.btn {
+  width: 550rpx;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.add-btn {
+  height: 40rpx;
+  border-radius: 20rpx;
+  border: 2rpx solid red;
+  color: red;
+  text-align: center;
+  line-height: 40rpx;
+  margin: 0 15rpx;
+  padding: 0 10rpx;
+  font-size: 24rpx;
+}
+.add-success {
+  width: 20rpx;
+  height: 20rpx;
+}
+

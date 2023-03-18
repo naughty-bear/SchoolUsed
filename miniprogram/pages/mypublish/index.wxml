@@ -1,0 +1,25 @@
+<!--pages/mypublish/index.wxml-->
+<view>
+  <scroll-view scroll-y="true">
+    <view class="goods" wx:if="{{goods.length == 0}}">
+      ——————您还没有发布商品——————
+    </view>
+    <view class="scroll-containier" wx:for="{{goods}}" wx:key="index">
+      <!-- 商品图片 -->
+      <image src="{{item.avatarUrl[0]}}" mode="" class="goods-img" />
+      <!-- 商品信息 -->
+      <view class="goods-name">
+        <view class='goods-message'>
+          <view>{{item.name}}</view>
+          <view style="color: red;">¥{{item.price}}</view>
+        </view>
+        <view class="btn">
+          <button class="delete-goods" bindtap="compileMsg" data-id="{{item._id}}">编辑</button>
+          <button class="delete-goods" bindtap="deleteGoods" data-id="{{item._id}}">下架</button>
+        </view>
+
+      </view>
+
+    </view>
+  </scroll-view>
+</view>

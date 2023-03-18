@@ -1,0 +1,136 @@
+/* pages/type/index.wxss */
+.type-container {
+  display: flex;
+  flex-direction: row;
+}
+
+/* 左侧导航 */
+.nav-aside {
+  position: fixed;
+  width: 200rpx;
+  height: 100%;
+  background-color: rgb(236, 234, 234);
+}
+
+.nav-item {
+  width: 200rpx;
+  height: 100rpx;
+  /* background-color: aqua; */
+  text-align: center;
+  line-height: 100rpx;
+  font-weight: 200;
+}
+
+/* 右侧商品区 */
+.scroll-containier {
+  display: flex;
+  flex-direction: row;
+  background-color: #fff;
+  margin-bottom: 10rpx;
+  border-radius:0 20rpx 20rpx 0;
+}
+
+.type-scroll {
+  margin-left: 200rpx;
+}
+
+.goodslist {
+  color: #ccc;
+  text-align: center;
+  margin-top: 50rpx;
+}
+
+.type-img {
+  width: 160rpx;
+  height: 160rpx;
+  margin: 10rpx;
+}
+
+.goods-message {
+  padding: 5rpx 15rpx 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.number-capacity {
+  margin: 20rpx 0;
+  color: #ccc;
+  font-size: 28rpx;
+}
+
+.price {
+  color: red;
+  margin-bottom: 15rpx;
+}
+
+.btn {
+  width: 350rpx;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  position: relative;
+}
+
+.add-btn {
+  height: 40rpx;
+  border-radius: 20rpx;
+  border: 2rpx solid red;
+  color: red;
+  text-align: center;
+  line-height: 40rpx;
+  margin: 0 15rpx;
+  padding: 0 10rpx;
+  font-size: 24rpx;
+
+}
+.add-success {
+  width: 20rpx;
+  height: 20rpx;
+}
+
+.btn-text {
+  line-height: 36rpx;
+}
+
+
+/* 商品总计 */
+.goods-total {
+  height: 80rpx;
+  width: 72%;
+  background-color: #ccc;
+  position: fixed;
+  bottom: 20rpx;
+  border-radius: 40rpx;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+.car-price {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.goods-car {
+  width: 60rpx;
+  height: 60rpx;
+  margin: 0 40rpx;
+}
+
+.shop-end {
+  width: 150rpx;
+  background-color: #f4ea2a;
+  height: 100%;
+  border-radius: 0 40rpx 40rpx 0;
+  color: red;
+  line-height: 80rpx;
+  text-align: center;
+}
+
+.total-price {
+  color: red;
+  font-size: 40rpx;
+}

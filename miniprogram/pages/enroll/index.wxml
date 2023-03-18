@@ -1,0 +1,24 @@
+<!--pages/enroll/index.wxml-->
+<form bindsubmit="enroll">
+  <view class="nape-container">
+    <view class="nape">
+      <text>手机：</text>
+      <input type="number" placeholder="请输入注册手机号" class="nape-ipt" name="phone" />
+    </view>
+    <view class="nape">
+      <text>昵称：</text>
+      <input type="text" placeholder="请输入您的姓名" class="nape-ipt" name="name" />
+    </view>
+    <view class="nape">
+      <text>密码：</text>
+      <input type="password" placeholder="请输入注册密码" class="nape-ipt" name="password" />
+    </view>
+    <view class="nape">
+      <text>确认密码：</text>
+      <input type="password" placeholder="请再次输入密码" class="nape-ipt" name="passwordDB" />
+    </view>
+
+    <button class="nape-btn1" form-type="submit">注册</button>
+    <button class="nape-btn2" form-type="reset">重置</button>
+  </view>
+</form>

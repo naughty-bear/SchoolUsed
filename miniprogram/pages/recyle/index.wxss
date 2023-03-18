@@ -1,0 +1,33 @@
+/* pages/recyle/index.wxss */
+.recyle-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: 20rpx 20rpx 0;
+  border: 2rpx solid #ccc;
+  border-radius: 20rpx;
+  padding: 10rpx;
+}
+.recyle-title {
+  font-weight: 700;
+}
+.phone,
+.wechat,
+.city {
+  color: rgb(153, 149, 149);
+  margin: 10rpx 0;
+}
+.phone-btn {
+  padding: 0 10rpx;
+  margin: 50rpx 0 0;
+  height: 50rpx;
+  line-height: 50rpx;
+  font-size: 30rpx;
+}
+.wechat-btn {
+  padding: 0 10rpx;
+  margin: 10rpx 0 0;
+  height: 50rpx;
+  line-height: 50rpx;
+  font-size: 30rpx;
+}

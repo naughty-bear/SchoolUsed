@@ -1,0 +1,21 @@
+<!--pages/login/index.wxml-->
+<!-- 头像 -->
+<view class="login-avatarUrl">
+  <image src="../../images/icon-touxiang.png" mode="" class="img-avatarUrl"/>
+  <text style="font-size: 40rpx;">校园二手交易</text>
+</view>
+<!-- 登录账号 -->
+<view class="accountNumber"> 
+  <text>手机：</text>
+  <input type="number" placeholder="请输入您的手机号" bindinput="getPhone"/>
+</view>
+<view class="accountNumber"> 
+  <text>密码：</text>
+  <input type="password" placeholder="请输入您的密码" bindinput="getPassword"/>
+</view>
+
+<!-- 登录按钮 -->
+<button class="login-btn" bindtap="submit">登录</button>
+<text style="color: red;text-align: center;" bindtap="enroll">暂无账号？点击注册</text>
+
+

@@ -1,0 +1,15 @@
+<!--pages/recyle/index.wxml-->
+<view class="recyle-container" wx:for="{{recyleList}}" wx:key="index">
+  <view>
+    <view class="recyle-title" style="text-align: center;">{{item.name}}</view>
+    <view class="phone">电话：{{item.phone}}</view>
+    <view class="wechat">微信：{{item.weixin}}</view>
+    <view class="city">区域：{{item.city}}</view>
+
+  </view>
+  <view>
+    <button type="warn" class="phone-btn" data-phone="{{item.phone}}" bindtap="callUp">拨打电话</button>
+    <button type="primary" class="wechat-btn" data-wechat="{{item.weixin}}" bindtap="copy">复制微信</button>
+  </view>
+
+</view>

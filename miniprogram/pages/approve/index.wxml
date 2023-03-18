@@ -1,0 +1,13 @@
+<!--pages/approve/index.wxml-->
+<view class="message-container">
+  <view class="message-name">
+    <text style="color: rgb(0, 255, 21);">修改帐号</text>
+    <input type="text" value="{{name}}" class="name-ipt" dir="rtl" bindinput="getusername"/>
+  </view>
+  <view class="message-head" bindtap="approveImg">
+    <text style="color: rgb(0, 255, 21);" >修改头像</text>
+    <image src="{{img}}" mode="" class="message-img" />
+  </view>
+</view>
+
+<button class="submit-approve" bindtap="submit">提交修改</button>

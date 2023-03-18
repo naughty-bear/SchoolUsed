@@ -1,0 +1,31 @@
+<!--pages/home/index.wxml-->
+<!-- 搜索框 -->
+<view class="search-input">
+  <input type="text" class="search" bindconfirm="toSearch" placeholder="请输入搜索关键字" placeholder-class="ipt-text" value="{{iptvalue}}" />
+  <image src="../../images/搜索.png" mode="" class="search-img" />
+</view>
+<!-- 轮播图 -->
+<swiper class="swiper-container" autoplay circular indicator-dots indicator-color="#fff" indicator-active-color="red">
+
+  <swiper-item class="swiper-box" wx:for="{{swiperList}}" wx:key="index">
+    <image class="swiper-img" src="{{item.swiperimg}}" mode="" bindtap="toRecycle" data-id="{{item._id}}" />
+  </swiper-item>
+</swiper>
+<view class="goods-recommend">
+  热销商品
+</view>
+
+<!-- 商品列表 -->
+<view class="goods-list">
+  <view class="goods-item" bindtap="togoodsDetail" data-id="{{item._id}}" wx:for="{{recommentGoods}}" wx:key="index">
+    <image src="{{item.avatarUrl[0]}}" mode="" class="goods-img" />
+    <view class="goods-title">{{item.name}}</view>
+    <view class="goods-description">
+      <view style="color: #FF0000;">¥{{item.price}}</view>
+      <view style="color: #ccc;font-size: 24rpx;margin-top: 8rpx;">数量:{{item.num}}</view>
+    </view>
+  </view>
+</view>
+<view style="height:100rpx">
+  
+</view>

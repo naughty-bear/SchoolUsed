@@ -1,0 +1,86 @@
+/* pages/cart/index.wxss */
+/* components/goodslist.wxss */
+.scroll-containier {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  background-color: #fff;
+  margin-bottom: 10rpx;
+  padding-left: 20rpx;
+  border-radius: 20rpx;
+}
+.goodslist {
+  color: #ccc;
+  text-align: center;
+  margin-top: 50rpx;
+}
+.type-img {
+  width: 160rpx;
+  height: 160rpx;
+  margin: 10rpx;
+}
+.goods-message {
+  padding: 5rpx 15rpx 0;
+}
+.number-capacity {
+  margin: 20rpx 0;
+  color: #ccc;
+  font-size: 28rpx;
+}
+.btn-handle {
+  width: 300rpx;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+.price {
+  color: red;
+  margin-bottom: 15rpx;
+}
+.delete {
+  width: 100rpx;
+  height: 40rpx;
+  border: 1rpx solid red;
+  border-radius: 10rpx;
+  color: red;
+  line-height: 40rpx;
+  text-align: center;
+  margin-top: 100rpx;
+}
+/* 结算 */
+.settle-accounts {
+  width: 90%;
+  height: 80rpx;
+  background-color: #ccc;
+  position: fixed;
+  bottom: 20rpx;
+  border-radius: 40rpx;
+  margin-left: 5%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding-left:40rpx ;
+  box-sizing: border-box;
+}
+.settle-text {
+  line-height: 80rpx;
+  margin-left: 80rpx;
+}
+.total-price{
+  color: red;
+  font-size: 40rpx;
+  margin-left: 10rpx;
+}
+.end {
+  width: 160rpx;
+  height: 100%;
+  background-color: red;
+  line-height: 80rpx;
+  text-align: center;
+  border-radius: 0 40rpx 40rpx 0;
+  font-size: 40rpx;
+  color: #fff;
+  position:absolute;
+  right: 0;
+}
