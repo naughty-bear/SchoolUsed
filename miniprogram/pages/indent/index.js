@@ -36,7 +36,7 @@ Page({
   },
   // 确认收货/删除订单
   confirmReceipt(e) {
-    console.log(e);
+    // console.log(e);
     this.setData({
       indentGoodsNo: [],
       indentGoodsYes: []
@@ -49,7 +49,6 @@ Page({
         content: '是否确认收货',
         complete: (res) => {
           if (res.confirm) {
-
             wx.cloud.database().collection('indent').doc(`${id}`).update({
               data: {
                 status: 1
@@ -62,7 +61,6 @@ Page({
             setTimeout(() => {
               this.onShow()
             }, 1000)
-
           } else if (res.cancel) {
             console.log("取消");
           }
@@ -110,11 +108,12 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow() {
+    console.log();
     // 获取订单商品
     let openid = wx.getStorageSync('user')._id
     wx.cloud.database().collection('indent').get().then(res => {
       for (let i = 0; i < res.data.length; i++) {
-        if (res.data[i].openid === openid) {
+        if (res.data[i].nickName === openid) {
           if (res.data[i].status === 0) {
             this.data.indentGoodsNo.push(res.data[i])
             this.setData({
@@ -126,7 +125,6 @@ Page({
               indentGoodsYes: this.data.indentGoodsYes
             })
           }
-
         }
       }
     })

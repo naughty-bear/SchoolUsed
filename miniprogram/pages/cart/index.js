@@ -44,7 +44,7 @@ Page({
         }
         // 保存加入到购物车且未付款的数据
         let list = this.transmit(this.data.GoodsList)
-        console.log(list);
+        // console.log(list);
         this.setData({
           cartGoodList: [...list],
         })
@@ -83,7 +83,6 @@ Page({
   },
   // 单选按钮
   checkboxChange(e) {
-
     // console.log(e);
     let id = e.currentTarget.dataset.id
     for (let i = 0; i < this.data.cartGoodList.length; i++) {
@@ -169,7 +168,7 @@ Page({
         if (cart[i]._id === this.data.indentList[j]) {
           wx.cloud.database().collection('indent').add({
             data: {
-              openid: openid,
+              nickName: openid,
               status: 0,
               address: cart[i].site,
               price: cart[i].price,

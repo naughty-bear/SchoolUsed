@@ -241,17 +241,17 @@ Page({
     //数组中索引最大的页面--当前页面
     let currentPage = pages[pages.length - 1]
     // console.log(JSON.parse(currentPage.options.res));
-    // console.log(currentPage.options.id)
-
-    if (this.data.goodsname) {
+    // console.log(currentPage.options)  
+    // console.log(typeof(currentPage.options.tab));
+    if (currentPage.options) {
       this.setData({
-        tab: currentPage.options.tab
+        tab: Number(currentPage.options.tab)
       })
     }
     if (currentPage.options.tab) {
       // console.log(currentPage.options._id);
       let value = JSON.parse(currentPage.options.res)
-      console.log(value);
+      // console.log(value);
       this.setData({
         _type: this.data.typeArr[value[0]._type],
         goodsname: value[0].name,
@@ -269,7 +269,7 @@ Page({
    * 生命周期函数--监听页面隐藏
    */
   onHide() {
-
+    
   },
 
   /**
@@ -289,7 +289,6 @@ Page({
       tab: ''
     })
   },
-
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
