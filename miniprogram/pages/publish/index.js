@@ -17,7 +17,7 @@ Page({
     goodsnumber: '',
     goodsdescription: '',
     goodsphone: '',
-    goodssite:'',
+    goodssite: '',
     goodsimg: '',
     tab: '',
   },
@@ -68,31 +68,39 @@ Page({
       count: 4 - that.data.uploaderNum,
       sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认有
       sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
-      success: function (res) {
-        // console.log(res)
-        // 返回选定照片的本地文件路径列表，tempFilePath可以作为img标签的src属性显示图片
-        let tempFilePaths = res.tempFiles[0].tempFilePath;
-        let uploaderList = that.data.uploaderList.concat(tempFilePaths);
-        // console.log(uploaderList);
-        if (uploaderList.length == 4) {
+    }).then(res => {
+      wx.cloud.uploadFile({
+        cloudPath: 'test/' + Date.parse(new Date()) + '.png',
+        filePath: res.tempFiles[0].tempFilePath, // 文件路径
+      }).then(res => {
+        //替换云存储图片临时地址
+        wx.cloud.getTempFileURL({
+          fileList: [res.fileID]
+        }).then(res => {
+          let tempFilePaths = res.fileList[0].tempFileURL;
+          let uploaderList = that.data.uploaderList.concat(tempFilePaths);
+          if (uploaderList.length == 4) {
+            that.setData({
+              showUpload: false
+            })
+          }
           that.setData({
-            showUpload: false
+            uploaderList: uploaderList,
+            uploaderNum: uploaderList.length,
           })
-        }
-        that.setData({
-          uploaderList: uploaderList,
-          uploaderNum: uploaderList.length,
+        }).catch(err => {
+          console.log("图片上传失败");
         })
-      }
+      })
     })
   },
   // 获取商品信息
   publish(e) {
     // console.log(e);
     let user = wx.getStorageSync('user')
-    if(!user){
+    if (!user) {
       wx.showToast({
-        icon:'none',
+        icon: 'none',
         title: '请先登录账号',
       })
       return
@@ -105,9 +113,60 @@ Page({
     let price = e.detail.value.goodsPrice
     let uploaderList = this.data.uploaderList
     let site = e.detail.value.site
-    if (!this.data.tab) {
-      if (name && _type !== '请选择商品类型' && price && uploaderList.length > 0 && site) {
-        wx.cloud.database().collection('goods').add({
+    // 手机号校验
+    //验证规则
+    let myPhone = /^(((13[0-9]{1})|(15[0-9]{1})|(18[0-9]{1})|(17[0-9]{1}))+\d{8})$/;
+    if (e.detail.value.phone.length !== 11 && !myPhone.test(e.detail.value.phone.length)) {
+      wx.showToast({
+        icon: 'none',
+        title: '手机号有误，请重新输入！',
+      })
+      return
+    } else {
+      if (!this.data.tab) {
+        if (name && _type !== '请选择商品类型' && price && uploaderList.length > 0 && site) {
+          wx.cloud.database().collection('goods').add({
+            data: {
+              name: e.detail.value.goodsName,
+              price: e.detail.value.goodsPrice,
+              _type: e.detail.value._type,
+              num: e.detail.value.goodsNumber,
+              content: e.detail.value.description,
+              phone: e.detail.value.phone,
+              avatarUrl: this.data.uploaderList,
+              phoneID: user._id,
+              site: e.detail.value.site
+            }
+          }).then(res => {
+            wx.showToast({
+              title: '发布成功',
+            })
+            //清空输入框
+            this.setData({
+              _type: '请选择商品类型',
+              goodstype: '',
+              goodsname: '',
+              goodsprice: '',
+              goodsnumber: '',
+              goodsdescription: '',
+              goodsphone: '',
+              goodssite: '',
+              uploaderList: [],
+            })
+          }).catch(() => {
+            wx.showToast({
+              icon: 'error',
+              title: '发布失败',
+            })
+          })
+        } else {
+          wx.showToast({
+            icon: 'error',
+            title: '请完整填写信息',
+          })
+        }
+      } else {
+        wx.cloud.database().collection('goods').doc(this.data._id).update({
           data: {
             name: e.detail.value.goodsName,
             price: e.detail.value.goodsPrice,
@@ -115,84 +174,43 @@ Page({
             num: e.detail.value.goodsNumber,
             content: e.detail.value.description,
             phone: e.detail.value.phone,
-            avatarUrl: this.data.uploaderList,
-            phoneID: user._id,
-            site:e.detail.value.site
+            site: e.detail.value.site
           }
         }).then(res => {
-          wx.showToast({
-            title: '发布成功',
-          })
           //清空输入框
           this.setData({
             _type: '请选择商品类型',
-            goodstype: '',
             goodsname: '',
             goodsprice: '',
             goodsnumber: '',
             goodsdescription: '',
             goodsphone: '',
-            goodssite:'',
-            uploaderList: [],
+            goodssite: '',
+            tab: ''
           })
+
+          wx.reLaunch({
+            url: '/pages/mypublish/index',
+          })
+          wx.showToast({
+            title: '修改成功',
+          }, 2000)
         }).catch(() => {
           wx.showToast({
             icon: 'error',
-            title: '发布失败',
+            title: '修改失败',
           })
         })
-      } else {
-        wx.showToast({
-          icon: 'error',
-          title: '请完整填写信息',
-        })
       }
-    } else {
-      wx.cloud.database().collection('goods').doc(this.data._id).update({
-        data: {
-          name: e.detail.value.goodsName,
-          price: e.detail.value.goodsPrice,
-          _type: e.detail.value._type,
-          num: e.detail.value.goodsNumber,
-          content: e.detail.value.description,
-          phone: e.detail.value.phone,
-          site:e.detail.value.site
-        }
-      }).then(res => {
-        //清空输入框
-        this.setData({
-          _type: '请选择商品类型',
-          goodsname: '',
-          goodsprice: '',
-          goodsnumber: '',
-          goodsdescription: '',
-          goodsphone: '',
-          goodssite:'',
-          tab:''
-        })
-
-        wx.navigateTo({
-          url: '/pages/mypublish/index',
-
-        })
-        wx.showToast({
-          title: '修改成功',
-        }, 2000)
-      }).catch(() => {
-        wx.showToast({
-          icon: 'error',
-          title: '修改失败',
-        })
-      })
-
     }
+
 
   },
 
   // 取消编辑
   goback() {
-    wx.navigateTo({
-      url: '/pages/mypublish/index',
+    wx.reLaunch({
+      url: '/pages/mypublish/index'
     })
     this.setData({
       _type: '请选择商品类型',
@@ -201,10 +219,9 @@ Page({
       goodsnumber: '',
       goodsdescription: '',
       goodsphone: '',
-      goodssite:'',
-      tab:''
+      goodssite: '',
+      tab: ''
     })
-    wx.clearStorageSync()
   },
 
   /**
@@ -225,11 +242,12 @@ Page({
     // console.log(JSON.parse(currentPage.options.res));
     // console.log(currentPage.options.id)
     this.setData({
-      tab: currentPage.options.id
+      tab: currentPage.options.tab
     })
-    if (pages && this.data.tab) {
+    if (currentPage.options.tab) {
       // console.log(currentPage.options._id);
       let value = JSON.parse(currentPage.options.res)
+      console.log(value);
       this.setData({
         _type: this.data.typeArr[value[0]._type],
         goodsname: value[0].name,
@@ -237,7 +255,7 @@ Page({
         goodsnumber: value[0].num,
         goodsdescription: value[0].content,
         goodsphone: value[0].phone,
-        goodssite:value[0].site,
+        goodssite: value[0].site,
         _id: currentPage.options._id
       })
     }
@@ -254,7 +272,18 @@ Page({
    * 生命周期函数--监听页面卸载
    */
   onUnload() {
-    
+    this.setData({
+      _type: '请选择商品类型',
+      goodstype: '',
+      goodsname: '',
+      goodsprice: '',
+      goodsnumber: '',
+      goodsdescription: '',
+      goodsphone: '',
+      goodssite: '',
+      uploaderList: [],
+      tab: ''
+    })
   },
 
   /**

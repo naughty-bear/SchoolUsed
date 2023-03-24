@@ -1,4 +1,9 @@
 <!--pages/type/index.wxml-->
+<!-- 搜索框 -->
+<view class="search-input">
+  <input type="text" class="search" bindconfirm="toSearch" placeholder="请输入搜索关键字" placeholder-class="ipt-text" value="{{iptvalue}}" />
+  <image src="../../images/搜索.png" mode="" class="search-img" />
+</view>
 <!-- 左侧导航栏 -->
 <view class="type-container">
   <view class="nav-aside">
@@ -8,9 +13,10 @@
   </view>
   <!-- 右侧商品列表 -->
   <scroll-view scroll-y="true" class="type-scroll">
-    <view wx:if="{{!goodslist.length}}" class="goodslist">
-      ————暂无该类商品————
-    </view>
+  <view wx:if="{{!goodslist.length}}" class="goodslist">
+    <image src="../../images/缺省页_暂无数据.png" mode=""/>
+    <text >————暂无该类商品————</text>
+  </view>
     <block wx:for="{{goodslist}}" wx:key="index">
       <view class="scroll-containier" bindtap="todetail" data-id="{{item._id}}">
         <!-- 商品图片 -->
@@ -18,7 +24,7 @@
         <!-- 商品信息 -->
         <view class="goods-message">
           <view>{{item.name}}</view>
-          <view class="number-capacity"> 数量:{{item.num}}</view>
+          <view class="number-capacity"> 剩余数量:{{item.num}}</view>
           <view class="btn">
             <view class="price">¥{{item.price}}</view>
             <!-- 添加商品 -->

@@ -22,6 +22,8 @@ Page({
   enroll(e) {
     // console.log(e);
     let val = e.detail.value
+    // 号码验证规则
+    let myPhone = /^(((13[0-9]{1})|(15[0-9]{1})|(18[0-9]{1})|(17[0-9]{1}))+\d{8})$/;
     this.setData({
       phone: val.phone,
       password: val.password,
@@ -32,6 +34,12 @@ Page({
       wx.showToast({
         icon: 'error',
         title: '请输入手机号',
+      })
+      return
+    }else if(!myPhone.test(this.data.phone)){
+      wx.showToast({
+        icon: 'none',
+        title: '手机号有误，请重新输入！',
       })
       return
     }

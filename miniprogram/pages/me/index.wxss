@@ -1,12 +1,10 @@
 /* pages/me/index.wxss */
-/* page {
-  background-color: #4fc08d;
-} */
+
 .userMessage {
   display: flex;
   flex-direction: row;
   align-items: center;
-  background-color: #4fc08d;
+  background-color: #15f0dd;
   padding: 40rpx 0;
 }
 .userHead {

@@ -1,0 +1,22 @@
+<!--pages/store/index.wxml-->
+
+<block wx:for="{{goodslist}}" wx:key="index">
+      <view class="scroll-containier" bindtap="todetail" data-id="{{item._id}}">
+        <!-- 商品图片 -->
+        <image src="{{item.avatarUrl[0]}}" mode="" class="type-img" />
+        <!-- 商品信息 -->
+        <view class="goods-message">
+          <view>{{item.name}}</view>
+          <view class="number-capacity"> 数量:{{item.num}}</view>
+          <view class="btn">
+            <view class="price">¥{{item.price}}</view>
+            <!-- 添加商品 -->
+            <view class="add-btn" catchtap="addGoods" data-id="{{item._id}}">
+            <wxs module="tool" src="../../select.wxs"></wxs>  
+            <image src="../../images/对勾.png" mode="" class="add-success" wx:if="{{tool.select(checkedList,item._id)}}"/>
+            加入购物车</view>
+          </view>
+        </view>
+      </view>
+
+    </block>

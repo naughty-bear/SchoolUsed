@@ -1,6 +1,7 @@
 {
   "pages": [
     "pages/home/index",
+    "pages/load/index",
     "pages/type/index",
     "pages/publish/index",
     "pages/cart/index",
@@ -12,12 +13,13 @@
     "pages/mypublish/index",
     "pages/detailgoods/index",
     "pages/search/index",
-    "pages/indent/index"
+    "pages/indent/index",
+    "pages/store/index"
   ],
   "window": {
     "backgroundColor": "#F6F6F6",
     "backgroundTextStyle": "light",
-    "navigationBarBackgroundColor": "#4fc08d",
+    "navigationBarBackgroundColor": "#15f0dd",
     "navigationBarTitleText": "校园闲置",
     "navigationBarTextStyle": "white"
   },

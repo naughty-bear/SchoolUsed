@@ -7,14 +7,25 @@ Page({
   data: {
     user: '',
     name: '',
-    img: '../../images/icon-touxiang.png'
+    img: '../../images/icon-touxiang.png',
+    Url: ''
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
-     
+    let user = wx.getStorageSync('user')
+    wx.cloud.database().collection('user').where({
+      _id: user._id
+    }).get().then(res => {
+      let val = res.data[0]
+      this.setData({
+        user: res.data[0],
+        name: val.nickName,
+        img: val.avatarUrl
+      })
+    })
   },
 
   /**
@@ -28,18 +39,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow() {
-    let user = wx.getStorageSync('user')
-    wx.cloud.database().collection('user').where({
-      _id: user._id
-    }).get().then(res => {
-      // console.log(res);
-      let val = res.data[0]
-      this.setData({
-        user: res.data[0],
-        name: val.nickName,
-        // img: val.avatarUrl
-      })
-    })
+    
   },
   // 获取更新的name
   getusername(e) {
@@ -55,83 +55,61 @@ Page({
     let nickName = this.data.user.nickName
     let name = this.data.name
     //判断是否修改昵称
-    if (name !== nickName) {
+    if (name !== nickName || this.data.user.avatarUrl !== this.data.Url) {
       wx.cloud.database().collection('user').doc(`${id}`).update({
         data: {
           nickName: this.data.name,
+          avatarUrl: this.data.Url ? this.data.Url : this.data.user.avatarUrl,
         }
       }).then(res => {
         wx.showToast({
           title: '修改成功',
         })
+        // 跳转页面
+        setTimeout(() => {
+          wx.switchTab({
+            url: '/pages/me/index'
+          })
+        }, 1500)
+      }).catch(error => {
+        console.log("修改失败", error)
       })
     }
-    //判断头像是否修改
-    debugger
-    
-      //图片的上传
-console.log(this.data.img);
-      wx.cloud.uploadFile({
-        cloudPath: this.data.user._id + Date.parse(new Date())+'.png',
-        filePath: this.data.img.tempFilePath, // 文件路径
-      }).then(res => {
-        console.log('res',res);
-        // get resource ID
-        wx.cloud.getTempFileURL({
-          fileList:[res.fileID]
-        })
-        wx.showLoading({
-          title: '头像上传中'
-        })
-        let fileID = res.fileID
-        wx.cloud.database().collection('user').doc(`${id}`).update({
-          data: {
-            avatarUrl: fileID,
-          }
-        }).then(res => {
-          //图片加载成功后隐藏上传效果
-          wx.hideLoading()
-          wx.showToast({
-            title: '修改成功',
-          })
-        })
-      }).catch(error => {
-        wx.hideLoading()
-        console.log("上传失败", error)
-      })
-    
-    // 跳转页面
-    setTimeout(() => {
-      wx.switchTab({
-        url: '/pages/me/index'
-      })
-    }, 1500)
+
 
   },
   // 修改头像
   approveImg() {
     // console.log(this.data.img);
-
     wx.chooseMedia({
       count: 1,
       mediaType: ['image'],
       sizeType: ['compressed'], //可以指定是原图还是压缩图，这里用压缩
       sourceType: ['album', 'camera'], //从相册选择
       success: (res) => {
-        console.log('res',res);
-        let id = this.data.user._id
-        // wx.cloud.database().collection('user').doc(`${id}`).update({
-        //   data: {
-        //     avatarUrl: res.tempFiles[0].tempFilePath,
-        //   }
-        // }).then(res => {
-        //   console.log(res);
-        // })
-        // console.log("选择图片成功", res)
-        this.setData({
-          img: res.tempFiles[0]
+        // 图片上传
+        wx.cloud.uploadFile({
+          cloudPath: 'test/' + Date.parse(new Date()) + '.png',
+          filePath: res.tempFiles[0].tempFilePath, // 文件路径
+        }).then(res => {
+          wx.showLoading({
+            title: '头像上传中'
+          })
+          //替换云存储图片临时地址
+          wx.cloud.getTempFileURL({
+            fileList: [res.fileID]
+          }).then(res => {
+
+            this.setData({
+              Url: res.fileList[0].tempFileURL,
+              img: res.fileList[0].tempFileURL
+            })
+            wx.hideLoading()
+          }).catch(err => {
+            console.log("修改失败");
+          })
         })
-        console.log(this.data.img);
+
       }
     })
   },

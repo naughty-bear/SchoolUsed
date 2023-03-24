@@ -23,3 +23,4 @@ exports.main = async (event, context) => {
       return await sumRecord.main(event, context);
   }
 };
+

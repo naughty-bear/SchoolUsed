@@ -8,16 +8,28 @@
   </swiper>
   <!-- 商品详细 -->
   <view class="detail-msg">
-    <text class="detail-price">¥{{goods.price}}</text>
+    <view class="num-msg">
+      <text class="detail-price">¥{{goods.price}}</text>
+      <text class="detail-num">剩余数量:{{goods.num}}</text>
+    </view>
+    <!-- 商品发布者 -->
+    <view class="publisher" wx:if="{{name && img}}">
+      <view class="publisher-user">
+        <image src="{{img}}" mode="" class="user-img" />
+        <text class="user-text">{{name}}</text>
+      </view>
+      <view class="toStore" bindtap="toStore">
+        查看ta的店铺
+      </view>
+    </view>
     <view class="detail-text">
-      <text>详情描述:</text>
+      <text style="font-weight: 350;margin-left: 20rpx;">详情描述:</text>
       <text style="margin: 20rpx 40rpx;">{{goods.content}}</text>
     </view>
 
     <view class="detail-container" wx:for="{{goods.avatarUrl}}" wx:key="index">
-      <image src="{{item}}"/>
+      <image src="{{item}}" />
     </view>
   </view>
   <view style="height: 50rpx;"></view>
-  
 </view>

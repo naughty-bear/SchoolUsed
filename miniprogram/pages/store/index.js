@@ -1,37 +1,26 @@
-// pages/detailgoods/index.js
+// pages/store/index.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-     name:'',
-     img:'',
-     openid:''
+     goodslist:''
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
-    // console.log(Object.values(options));
-    let id = Object.values(options)[0]
-    wx.cloud.database().collection('goods').where({
-      _id:id
-    }).get().then(res=>{
-      this.setData({
-        goods:res.data[0]
-      })
-    })
-  },
-  // 查看发布店铺
-  toStore (){
-     wx.navigateTo({
-       url: '/pages/store/index?openid='+ this.data.openid,
+     wx.cloud.database().collection('goods').where({
+       phoneID:options.openid
+     }).get().then(res=>{
+       this.setData({
+         goodslist:res.data
+       })
      })
   },
-  // 加入购物车
-  
+
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
@@ -43,12 +32,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow() {
-     let user = wx.getStorageSync('user')
-     this.setData({
-       name:user.nickName,
-       img:user.avatarUrl,
-       openid:user._id
-     })
+
   },
 
   /**

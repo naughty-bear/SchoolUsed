@@ -83,7 +83,7 @@ Page({
       let value = JSON.stringify(res.data)
       // console.log(value);
       wx.reLaunch({
-        url: '/pages/publish/index?res='+value +'&id='+ 1 + '&_id='+ res.data[0]._id,
+        url: '/pages/publish/index?res='+value +'&tab='+ 1 + '&_id='+ res.data[0]._id,
       })
     }).catch(() => {
       console.log('编辑失败');

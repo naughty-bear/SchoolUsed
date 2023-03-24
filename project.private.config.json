@@ -247,6 +247,13 @@
           "query": "",
           "launchMode": "default",
           "scene": null
+        },
+        {
+          "name": "",
+          "pathName": "pages/detailgoods/index",
+          "query": "id=acb2609c6416b7000008670a49ba70bd",
+          "launchMode": "default",
+          "scene": null
         }
       ]
     }

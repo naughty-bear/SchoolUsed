@@ -7,14 +7,29 @@ Page({
   data: {
     userName: '',
     img: '../../images/icon-touxiang.png',
-    login: true,
-    indentList: []
+    login: false,
+    indentList: [],
+    // tab: ''
   },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
-    
+    console.log(options);
+    if (options && options.tab) {
+      this.setData({
+        userName: options.userInfo,
+        // tab: options.tab
+      })
+    } else {
+      this.setData({
+        userName: options.name,
+        img: options.img,
+        phone: options.phone,
+        login: true
+      })
+    }
+
   },
   // 上门回收
   toRecycle() {
@@ -32,18 +47,7 @@ Page({
   login() {
     // 跳转到登录页 
     wx.navigateTo({
-      url: '/pages/login/index',
-    })
-    // console.log(this.data.img);
-    let user = wx.getStorageSync('user')
-    wx.cloud.database().collection('user').where({
-      _id: user._id
-    }).get().then(res => {
-      let val = res.data[0]
-      this.setData({
-        userName: val.nickName,
-        img: val.avatarUrl
-      })
+      url: '/pages/load/index',
     })
   },
   // 退出登录
@@ -51,10 +55,15 @@ Page({
     this.setData({
       userName: '',
       img: '../../images/icon-touxiang.png',
-      login:false
+      tab: '',
+      login: false
     })
+
     // 清除缓存
-    wx.setStorageSync('user', '')
+    wx.setStorageSync('user', ''),
+      wx.navigateTo({
+        url: '/pages/load/index',
+      })
   },
   // 跳转到修改页
   changeTnformation() {
@@ -86,23 +95,26 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow() {
-    if(!this.data.userName){
-      wx.showToast({
-        icon:'none',
-        title: '请先登录账号',
-      })
+      let user = wx.getStorageSync('user')
+      if (!user) {
+        wx.showToast({
+          icon: 'none',
+          title: '请先登录账号',
+        })
+      } else {
+        wx.cloud.database().collection('user').where({
+          _id: user._id
+        }).get().then(res => {
+          let val = res.data[0]
+          this.setData({
+            userName: val.nickName,
+            img: val.avatarUrl,
+            login: true
+          })
+        })
+      
+
     }
-    // console.log(this.data.img);
-    // let user = wx.getStorageSync('user')
-    // wx.cloud.database().collection('user').where({
-    //   _id: user._id
-    // }).get().then(res => {
-    //   let val = res.data[0]
-    //   this.setData({
-    //     userName: val.nickName,
-    //     img: val.avatarUrl
-    //   })
-    // })
   },
 
   /**

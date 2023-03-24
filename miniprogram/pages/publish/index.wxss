@@ -6,7 +6,7 @@
   margin: 20rpx;
 }
 .textStyle {
-  color: #4fc08d;
+  color: rgb(161, 161, 161);
 }
 
 .publish-ipt {
@@ -32,8 +32,7 @@
 /* 更新发布商品信息 */
 .compile {
   display: flex;
-  flex-direction: row;
-  justify-content: space-around;
+  flex-direction: column;
 }
 .publish-updata,
 .publish-no {
@@ -41,6 +40,7 @@
    width: 300rpx;
    height: 80rpx;
    line-height: 80rpx;
+   margin-top: 20rpx;
 }
 /* 上传图片 */
 .content-img{

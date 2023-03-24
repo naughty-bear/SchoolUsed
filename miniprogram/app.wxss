@@ -24,4 +24,5 @@ page {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
+  background-color: rgb(238, 238, 238);
 }

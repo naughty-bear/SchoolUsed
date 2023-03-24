@@ -15,7 +15,7 @@
 <!-- 下部菜单栏 -->
 <view class="recycle-container">
   <!-- 登录时显示 -->
-  <view wx:if="{{userName}}">
+  <view wx:if="{{login && userName}}">
     <view class="recycle" bindtap="changeTnformation">
       <view class="nav-btn">
         <image src="../../images/xiugaiziliao.png" mode="" class="Image" />

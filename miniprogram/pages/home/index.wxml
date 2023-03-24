@@ -16,13 +16,17 @@
 </view>
 
 <!-- 商品列表 -->
+<view wx:if="{{!recommentGoods}}" class="goodsNo">
+  <text style="color: #ccc; text-align: center;">————暂无推荐商品—————</text>
+  <image src="../../images/缺省页_暂无数据.png" mode=""/>
+</view>
 <view class="goods-list">
   <view class="goods-item" bindtap="togoodsDetail" data-id="{{item._id}}" wx:for="{{recommentGoods}}" wx:key="index">
     <image src="{{item.avatarUrl[0]}}" mode="" class="goods-img" />
     <view class="goods-title">{{item.name}}</view>
     <view class="goods-description">
       <view style="color: #FF0000;">¥{{item.price}}</view>
-      <view style="color: #ccc;font-size: 24rpx;margin-top: 8rpx;">数量:{{item.num}}</view>
+      <view style="color: #ccc;font-size: 24rpx;margin-top: 8rpx;">剩余数量:{{item.num}}</view>
     </view>
   </view>
 </view>

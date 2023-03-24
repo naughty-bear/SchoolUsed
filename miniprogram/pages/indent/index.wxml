@@ -4,9 +4,14 @@
   <text bindtap="indentObligation" style="color: {{activeColor2}}; font-size: {{size2}}rpx;">已完成</text>
 </view>
 <!-- 没有订单时 -->
-<view class="indent-text" wx:if="{{indentGoodsYes.length == 0 && indentGoodsNo.length == 0}}">————您暂时没有订单————</view>
-<view class="indent-text" wx:if="{{indentGoodsNo.length == 0 && activeColor1 === '#04f436'}}">————您暂时没有待收货————</view>
-<view class="indent-text" wx:if="{{indentGoodsYes.length == 0 && activeColor2 === '#04f436'}}">————您暂时没有已完成订单————</view>
+<view class="indent-text" wx:if="{{indentGoodsNo.length == 0 && activeColor1 === '#04f436'}}">
+  <image src="../../images/缺省页_暂无数据.png" mode="" />
+  ————您暂时没有待收货————
+</view>
+<view class="indent-text" wx:if="{{indentGoodsYes.length == 0 && activeColor2 === '#04f436'}}">
+  <image src="../../images/缺省页_暂无数据.png" mode="" />
+  ————您暂时没有已完成订单————
+</view>
 
 <!-- 有订单 -->
 <view class="goods" wx:for="{{activeColor1=== '#04f436'?indentGoodsNo : indentGoodsYes}}" wx:key="index">

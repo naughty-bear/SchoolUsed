@@ -1,6 +1,6 @@
 // pages/type/index.js
 
- Page({
+Page({
 
   /**
    * 页面的初始数据
@@ -21,8 +21,28 @@
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
-    
-  }, 
+
+  },
+  // 搜索页
+  toSearch(e) {
+    //  console.log(e);
+    wx.cloud.database().collection('goods').where({
+      name: wx.cloud.database().RegExp({
+        regexp: e.detail.value,
+        options: 'i'
+      })
+    }).get().then(res => {
+
+      // console.log(res);
+      let value = JSON.stringify(res.data)
+      wx.navigateTo({
+        url: `/pages/search/index?res=${value}`,
+      })
+      this.setData({
+        iptvalue: null
+      })
+    })
+  },
   //获取分类列表
   getTypeList() {
     wx.cloud.database().collection('shopType').get().then(res => {
@@ -76,7 +96,7 @@
         this.setData({
           checkedList: this.data.checkedList,
           totalPrice: this.data.totalPrice + Number(res.data[0].price),
-        }) 
+        })
         // console.log(this.data.checkedList);
       } else if (this.data.checkedList.includes(id)) {
         this.data.checkedList.splice(this.data.checkedList.indexOf(id), 1)
@@ -90,9 +110,9 @@
   // 选好了
   shopEnd() {
     let user = wx.getStorageSync('user')
-    if(!user){
+    if (!user) {
       wx.showToast({
-        icon:'none',
+        icon: 'none',
         title: '请先登录账号',
       })
       return
@@ -114,7 +134,7 @@
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady() {
-      
+
   },
 
   /**

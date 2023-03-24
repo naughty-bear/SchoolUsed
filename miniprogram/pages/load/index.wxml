@@ -1,0 +1,14 @@
+<!--pages/load/index.wxml-->
+<view class="loadType">
+<view wx:if="{{nickName && avatarUrl}}">
+  <input type="text" bindblur="getPhone"   class="getInput" value="{{phone}}" placeholder="请输入要绑定的手机号"/>
+  <button type="primary" bindtap="load">登录</button>
+  <button type="warn" bindtap="goback">返回</button>
+</view>
+  
+  <view wx:else="{{!nickName && !avatarUrl}}">
+    <button type="primary" bindtap="loadByWechat">微信授权登录</button>
+    <button type="primary" plain="true" bindtap="loadByAccount">账号密码登录</button>
+  </view>
+
+</view>

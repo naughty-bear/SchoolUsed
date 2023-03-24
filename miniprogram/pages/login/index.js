@@ -14,19 +14,25 @@ Page({
       url: '/pages/enroll/index',
     })
   },
-  // 获取输入密码
+  // 获取输入电话号码
   getPhone(e) {
     // console.log(e.detail.value);
-    this.setData({
-      phone: e.detail.value
-    })
+    if (e) {
+      this.setData({
+        phone: e.detail.value
+      })
+    }
+
   },
   //获取登录密码
   getPassword(e) {
     // console.log(e.detail.value);
-    this.setData({
-      password: e.detail.value
-    })
+    if (e) {
+      this.setData({
+        password: e.detail.value
+      })
+    }
+
   },
   // 登录
   submit() {
@@ -46,31 +52,31 @@ Page({
     }
 
     // 从数据库获取注册信息
-    wx.cloud.database().collection('user')
-      .where({
-        phone: this.data.phone,
-        password: this.data.password
-      }).get().then(res => {
-        // console.log(res);
-        if (this.data.password == res.data[0].password) {
-          wx.setStorageSync('user', res.data[0])
-          wx.showToast({
-            title: '登录成功',
-          })
-          setTimeout(() => {
-            wx.switchTab({
-              url: '/pages/me/index',
+    if (this.data.phone && this.data.password) {
+      wx.cloud.database().collection('user')
+        .where({
+          phone: this.data.phone,
+          password: this.data.password
+        }).get().then(res => {
+          if (this.data.password == res.data[0].password) {
+             wx.setStorageSync('user', res.data[0])
+            wx.showToast({
+              title: '登录成功',
             })
-          }, 1500)
-        }
-      }).catch(err => {
-        wx.showToast({
-          icon: 'error',
-          title: '密码错误',
+            setTimeout(() => {
+              wx.reLaunch({
+                url: '/pages/me/index?userInfo=' + res.data[0].nickName + '&tab='  + 1,
+              })
+            }, 1500)
+          }
+        }).catch(err => {
+          wx.showToast({
+            icon: 'error',
+            title: '密码错误',
+          })
+          return
         })
-        return
-      })
-
+    }
   },
   /**
    * 生命周期函数--监听页面加载
