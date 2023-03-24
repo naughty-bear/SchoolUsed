@@ -135,7 +135,7 @@ Page({
               phone: e.detail.value.phone,
               avatarUrl: this.data.uploaderList,
               phoneID: user._id,
-              site: e.detail.value.site
+              site: e.detail.value.site,
             }
           }).then(res => {
             wx.showToast({
@@ -152,6 +152,7 @@ Page({
               goodsphone: '',
               goodssite: '',
               uploaderList: [],
+              tab: ''
             })
           }).catch(() => {
             wx.showToast({
@@ -241,9 +242,12 @@ Page({
     let currentPage = pages[pages.length - 1]
     // console.log(JSON.parse(currentPage.options.res));
     // console.log(currentPage.options.id)
-    this.setData({
-      tab: currentPage.options.tab
-    })
+
+    if (this.data.goodsname) {
+      this.setData({
+        tab: currentPage.options.tab
+      })
+    }
     if (currentPage.options.tab) {
       // console.log(currentPage.options._id);
       let value = JSON.parse(currentPage.options.res)
